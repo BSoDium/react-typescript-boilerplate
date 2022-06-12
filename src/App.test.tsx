@@ -1,13 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import App from 'App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+beforeAll(() => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: () => ({
+      matches: false,
+      onchange: null,
+      addListener: jest.fn(), // deprecated
+      removeListener: jest.fn(), // deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }),
+  });
+});
 
-test('renders learn react link', () => {
+test('renders app correctly', () => {
   render(<App />);
-  const linkElement = screen.getByText(/GitHub/i);
+  const linkElement = screen.getByText(/Woops/i);
   expect(linkElement).toBeInTheDocument();
 });

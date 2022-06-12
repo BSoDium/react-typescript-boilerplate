@@ -1,4 +1,4 @@
-FROM node:17
+FROM node:18
 
 LABEL org.opencontainers.image.description "App description."
 
