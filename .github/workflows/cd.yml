@@ -22,7 +22,7 @@ jobs:
 
     - run: yarn test
 
-    - run: yarn build
+    - run: yarn deploy
 
     - run: git config user.name github-actions
 
