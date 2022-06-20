@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-typescript-boilerplate/static/css/main.e1b97ae6.css",
+    "main.js": "/react-typescript-boilerplate/static/js/main.894b1366.js",
+    "static/media/app.svg": "/react-typescript-boilerplate/static/media/app.d8640f9e0213ff994a4c91b243c7acf1.svg",
+    "index.html": "/react-typescript-boilerplate/index.html",
+    "main.e1b97ae6.css.map": "/react-typescript-boilerplate/static/css/main.e1b97ae6.css.map",
+    "main.894b1366.js.map": "/react-typescript-boilerplate/static/js/main.894b1366.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e1b97ae6.css",
+    "static/js/main.894b1366.js"
+  ]
+}
