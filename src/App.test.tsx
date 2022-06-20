@@ -20,6 +20,6 @@ beforeAll(() => {
 
 test('renders app correctly', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Woops/i);
+  const linkElement = screen.getByText(/Hello there/i);
   expect(linkElement).toBeInTheDocument();
 });
