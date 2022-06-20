@@ -6,7 +6,7 @@
   "url": "https://github.com/bsodium",
   "homepage": "https://www.bsodium.fr/react-typescript-boilerplate/",
   "email": "negreljerzy.philippe@gmail.com",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@react-three/fiber": "^8.0.23",
     "@testing-library/jest-dom": "^5.14.1",
