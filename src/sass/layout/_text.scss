@@ -1,0 +1,117 @@
+@import "../themes/light";
+@import "../themes/dark";
+
+@mixin themable($theme-name, $theme-map) {
+  .#{$theme-name} {
+    body {
+      background-color: map-get($theme-map, bg-primary);
+      color: map-get($theme-map, text-primary);
+    }
+
+    a {
+      color: map-get($theme-map, text-href);
+      text-decoration: none;
+      font-weight: bolder;
+
+      &.decorated {
+        &:hover {
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
+
+    b {
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: inherit;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 2.1rem;
+      font-weight: inherit;
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: inherit;
+      margin: 0;
+    }
+
+    h4 {
+      font-size: 0.9rem;
+      font-weight: inherit;
+      margin: 0;
+    }
+
+    h5 {
+      font-size: 0.8rem;
+      font-weight: inherit;
+      margin: 0;
+    }
+
+    code {
+      background-color: map-get($theme-map, bg-secondary);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .text {
+
+      &.center {
+        text-align: center;
+      }
+
+      &.primary {
+        color: map-get($theme-map, text-primary);
+      }
+
+      &.secondary {
+        color: map-get($theme-map, text-secondary);
+      }
+
+      &.silent {
+        color: map-get($theme-map, text-silent);
+      }
+
+      &.success {
+        color: map-get($theme-map, success);
+      }
+
+      &.warning {
+        color: map-get($theme-map, warning);
+      }
+
+      &.danger {
+        color: map-get($theme-map, danger);
+      }
+
+      &.ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.one-line {
+          white-space: nowrap;
+        }
+      }
+
+      &.bold {
+        @extend b;
+      }
+
+      &.sm {
+        font-size: 14px;
+      }
+
+
+    }
+  }
+}
+
+@include themable(light, $light);
+@include themable(dark, $dark);

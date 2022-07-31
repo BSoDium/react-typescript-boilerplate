@@ -1,6 +1,13 @@
+// Page-specific styles
 @import "./sass/pages/default";
-@import "./sass/text";
+
+// Components
 @import "./sass/components/buttons";
+
+// Layout
+@import "./sass/layout/text";
+@import "./sass/layout/cards";
+@import "./sass/layout/containers";
 
 body {
   margin: 0;
@@ -27,4 +34,16 @@ button,
 textarea,
 :focus {
   outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: map-get($dark, bg);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: map-get($light, bg);
+  }
 }

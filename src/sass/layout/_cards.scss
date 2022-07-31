@@ -1,0 +1,93 @@
+@import "../themes/dark";
+@import "../themes/light";
+
+
+@mixin themable($theme-name, $theme-map) {
+  .#{$theme-name} {
+
+    .card {
+      @extend .container;
+      border: 1px solid map-get($theme-map, border-accent);
+      background-color: map-get($theme-map, bg-secondary);
+      border-radius: 6px;
+
+      &.shadow {
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      }
+
+      &.no-border {
+        border: none;
+      }
+
+      &.no-background {
+        background-color: transparent;
+      }
+
+      &>footer {
+
+        &.break-sm {
+          margin-top: 0.5rem;
+        }
+
+        &.break-md {
+          margin-top: 1.5rem;
+        }
+
+        &.break-lg {
+          margin-top: 2.5rem;
+        }
+
+        &.break-xl {
+          margin-top: 3.5rem;
+        }
+      }
+    }
+
+    .note {
+      @extend .no-flex-shrink;
+      display: block;
+      color: map-get($theme-map, text-primary);
+      border-radius: 6px;
+      padding: 10px;
+      width: max-content;
+      height: min-content;
+      font-size: 0.8rem;
+    }
+
+    .tag {
+      @extend .no-flex-shrink;
+      display: block;
+      color: map-get($theme-map, text-primary);
+      border-radius: 25px;
+      padding: 2px 7px;
+      width: max-content;
+      height: min-content;
+      font-size: 0.8rem;
+      text-transform: capitalize;
+      font-weight: bolder;
+      pointer-events: none;
+    }
+
+    .note,
+    .tag {
+
+      &.success {
+        background-color: rgba(map-get($theme-map, success), 0.5);
+        border: 1px solid map-get($theme-map, success);
+      }
+
+      &.danger {
+        background-color: rgba(map-get($theme-map, danger), 0.5);
+        border: 1px solid map-get($theme-map, danger);
+      }
+
+      &.warning {
+        background-color: rgba(map-get($theme-map, warning), 0.5);
+        border: 1px solid map-get($theme-map, warning);
+      }
+    }
+  }
+}
+
+@include themable(light, $light);
+@include themable(dark, $dark);

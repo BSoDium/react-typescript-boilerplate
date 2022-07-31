@@ -1,0 +1,137 @@
+@import "../themes/dark";
+@import "../themes/light";
+
+@mixin themable($theme-name, $theme-map) {
+  .#{$theme-name} {
+    %generic {
+      @extend %background, %margin, %padding;
+
+      &.no-flex-shrink {
+        flex-shrink: 0 !important;
+      }
+
+      &.absolute {
+        position: absolute;
+      }
+
+      &.fixed {
+        position: fixed;
+      }
+
+      &.sticky {
+        position: sticky;
+      }
+
+      &.top-index {
+        z-index: 9999;
+      }
+
+      &.glow {
+        filter: drop-shadow(10px 10px 150px map-get($theme-map, icon-glow));
+      }
+
+    }
+
+    %background {
+      &.bg-primary {
+        background-color: map-get($theme-map, bg-primary);
+      }
+
+      &.bg-accent {
+        background-color: map-get($theme-map, bg-accent);
+      }
+
+      &.bg-secondary {
+        background-color: map-get($theme-map, bg-secondary);
+      }
+
+      &.bg-gradient {
+        background: radial-gradient(circle, map-get($theme-map, bg-accent) 0%, map-get($theme-map, bg-primary) 100%);
+
+        &.inverted {
+          background: radial-gradient(circle, map-get($theme-map, bg-primary) 0%, map-get($theme-map, bg-accent) 100%);
+        }
+
+        &.soft {
+          background: radial-gradient(circle, map-get($theme-map, bg-primary) 0%, lighten(map-get($theme-map, bg-primary), 3%) 100%);
+        }
+
+        &.danger {
+          background: radial-gradient(circle at 0% 0%, mix(map-get($theme-map, danger), map-get($theme-map, bg-primary), 15%) 0%, map-get($theme-map, bg-primary) 80%);
+        }
+
+        &.success {
+          background: radial-gradient(circle at 0% 0%, mix(map-get($theme-map, success), map-get($theme-map, bg-primary), 15%) 0%, map-get($theme-map, bg-primary) 80%);
+        }
+
+        &.warning {
+          background: radial-gradient(circle at 0% 0%, mix(map-get($theme-map, warning), map-get($theme-map, bg-primary), 15%) 0%, map-get($theme-map, bg-primary) 80%);
+        }
+      }
+    }
+
+    %margin {
+      &.no-margin-v {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      &.no-margin-h {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      &.margin-sm {
+        margin: 0.5rem;
+      }
+
+      &.margin-md {
+        margin: 1.5rem;
+      }
+
+      &.margin-lg {
+        margin: 2.5rem;
+      }
+
+      &.margin-xl {
+        margin: 3.5rem;
+      }
+    }
+
+    %padding {
+      &.no-padding-v {
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      &.no-padding-h {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      &.padding-sm {
+        padding: 0.5rem;
+      }
+
+      &.padding-md {
+        padding: 1.5rem;
+      }
+
+      &.padding-lg {
+        padding: 2.5rem;
+      }
+
+      &.padding-xl {
+        padding: 3.5rem;
+      }
+    }
+
+    div {
+      @extend %generic;
+    }
+
+  }
+}
+
+@include themable(light, $light);
+@include themable(dark, $dark);

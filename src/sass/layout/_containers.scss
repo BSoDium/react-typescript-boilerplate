@@ -1,0 +1,223 @@
+@import "../themes/light";
+@import "../themes/dark";
+@import "./generic";
+
+@mixin spacing($spacing) {
+  & {
+    row-gap: $spacing;
+    column-gap: $spacing;
+  }
+}
+
+@mixin themable($theme-name, $theme-map) {
+  .#{$theme-name} {
+    .container {
+      @extend %generic;
+
+      // Development only (append to your class name to see the container)
+      &.prototype {
+        position: relative;
+        outline: dashed 2px map-get($theme-map, text-silent);
+        outline-offset: -2px;
+        background-image: radial-gradient(rgba(128, 128, 128, 0.5) 4%, transparent 4%);
+        background-size: 50px 50px;
+        transition: all 0.2s ease-in-out;
+
+        &>* {
+          opacity: 0.1;
+          transition: opacity 0.2s ease-in-out
+        }
+
+        &::before {
+          content: "PROTOTYPE";
+          position: absolute;
+          top: 15px;
+          left: 20px;
+          font-family: "Dosis", sans-serif;
+          font-size: 2rem;
+          font-weight: bold;
+          border-bottom: 1px solid map-get($theme-map, text-primary);
+          transition: opacity 0.2s ease-in-out;
+        }
+
+        &::after {
+          content: "50 x 50 PIXEL - GRID";
+          position: absolute;
+          top: 15px;
+          left: 20px;
+          font-family: "Dosis", sans-serif;
+          font-size: 1rem;
+          font-weight: bold;
+          transform: translateY(45px);
+          transition: opacity 0.2s ease-in-out;
+        }
+
+        &:hover {
+          outline: solid 2px map-get($theme-map, text-silent);
+          background-position: 50px 50px;
+          border-radius: 20px;
+          cursor: pointer;
+        }
+
+        &:active {
+          background-image: none;
+          border-radius: inherit;
+          outline: none;
+
+          &::after,
+          &::before {
+            opacity: 0;
+          }
+
+          &>* {
+            opacity: 1;
+          }
+        }
+
+      }
+
+      &.flex-row,
+      &.flex-col {
+        display: flex;
+
+        &>* {
+          min-width: 0;
+          flex-shrink: 1;
+        }
+
+        &.spacing-sm {
+          @include spacing(0.5rem);
+        }
+
+        &.spacing-md {
+          @include spacing(1.5rem);
+        }
+
+        &.spacing-lg {
+          @include spacing(2.5rem);
+        }
+
+        &.spacing-xl {
+          @include spacing(3.5rem);
+        }
+
+        &.wrap {
+          flex-wrap: wrap;
+        }
+
+        &.nowrap {
+          flex-wrap: nowrap;
+        }
+      }
+
+      &.flex-row {
+        flex-direction: row;
+      }
+
+      &.flex-col {
+        flex-direction: column;
+      }
+
+      &.fill-parent {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      &.fill-parent-v {
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      &.fill-parent-h {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      &.fill-viewport {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+
+      &.center-children {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &.center-children-o {
+        // orthogonal
+        display: flex;
+        align-items: center;
+      }
+
+      &.center-children-p {
+        // parallel
+        display: flex;
+        justify-content: center;
+      }
+
+      &.center-self {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &.justify-center {
+        justify-content: center;
+      }
+
+      &.justify-end {
+        justify-content: flex-end;
+      }
+
+      &.justify-start {
+        justify-content: flex-start;
+      }
+
+      &.justify-between {
+        justify-content: space-between;
+      }
+
+      &.overflow-hidden {
+        overflow: hidden;
+      }
+
+      &.overflow-visible {
+        overflow: visible;
+      }
+
+      &.overflow-auto {
+        overflow: auto;
+      }
+
+      &.isolate-children {
+        &.flex-col {
+          &>* {
+            border-bottom: 1px solid map-get($theme-map, border);
+          }
+
+          &>*:last-child {
+            border-bottom: none;
+          }
+        }
+
+        &.flex-row {
+          &>* {
+            border-right: 1px solid map-get($theme-map, border);
+          }
+
+          &>*:last-child {
+            border-right: none;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+@include themable(light, $light);
+@include themable(dark, $dark);
